@@ -13,10 +13,10 @@ import hibernate.test.dto.ClienteEntity;
 
 public class ClienteDAO {
 
-	public void insertOrUpdateCliente(ClienteEntity emp) {
+	public void insertOrUpdateCliente(ClienteEntity cli) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
-		session.saveOrUpdate(emp);
+		session.saveOrUpdate(cli);
 		session.getTransaction().commit();
 		HibernateUtil.shutdown();
 	}

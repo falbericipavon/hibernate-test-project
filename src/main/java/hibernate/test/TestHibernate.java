@@ -184,7 +184,7 @@ public class TestHibernate {
 				System.out.println("El usuario se ha MODIFICADO correctamente");
 				break;
 			default:
-				errorGeneral("OPCIÓN");
+				errorGeneral("OPCIÃ“N");
 				modificacion();
 				break;
 			}
@@ -237,21 +237,26 @@ public class TestHibernate {
 		System.out.println("Ingrese ID");
 		int clienteId = sc.nextInt();
 		cli = cliDAO.getCliente(clienteId);
-		try {
-			System.out.println("La persona seleccionada es:" + cli.getName());
-			ven.setEmpleadoEntity(cli);
-			System.out.println("Ingrese Monto de la venta");
-			float importe = sc.nextFloat();
-			ven.setImporte(importe);
-			Date fecha = new Date();
-			SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String fechaHoy = ft.format(fecha);
-			Date fechaV = ft.parse(fechaHoy);
-			ven.setFechaVenta(fechaV);
-			venDAO.insertVenta(ven);
-			System.out.println("La VENTA se ha realizado correctamente");
-		} catch (ParseException e) {
-			errorGeneral("FECHA");
+		if (cli == null) {
+			errorID();
+			ventas();
+		} else {
+			try {
+				System.out.println("La persona seleccionada es:" + cli.getName());
+				ven.setEmpleadoEntity(cli);
+				System.out.println("Ingrese Monto de la venta");
+				float importe = sc.nextFloat();
+				ven.setImporte(importe);
+				Date fecha = new Date();
+				SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				String fechaHoy = ft.format(fecha);
+				Date fechaV = ft.parse(fechaHoy);
+				ven.setFechaVenta(fechaV);
+				venDAO.insertVenta(ven);
+				System.out.println("La VENTA se ha realizado correctamente");
+			} catch (ParseException e) {
+				errorGeneral("FECHA");
+			}
 		}
 	}
 
@@ -291,7 +296,7 @@ public class TestHibernate {
 				System.out.println("La VENTA se ha MODIFICADO correctamente");
 				break;
 			default:
-				errorGeneral("OPCIÓN");
+				errorGeneral("OPCIÃ“N");
 				modificarventa();
 				break;
 			}
